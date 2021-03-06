@@ -11,7 +11,7 @@ defmodule FadBotWeb.Endpoint do
   ]
 
   socket "/socket", FadBotWeb.UserSocket,
-    websocket: true,
+    websocket: false,
     longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]

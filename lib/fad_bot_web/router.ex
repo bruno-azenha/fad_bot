@@ -19,10 +19,11 @@ defmodule FadBotWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", FadBotWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", FadBotWeb do
+    pipe_through :api
+
+    post "/slack_callback", SlackController, :callback
+  end
 
   # Enables LiveDashboard only for development
   #
