@@ -11,6 +11,8 @@ defmodule FadBot.Application do
       FadBotWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: FadBot.PubSub},
+      # Start Finch HTTP server
+      {Finch, name: FadBot.Finch},
       # Start the Endpoint (http/https)
       FadBotWeb.Endpoint
       # Start a worker by calling: FadBot.Worker.start_link(arg)

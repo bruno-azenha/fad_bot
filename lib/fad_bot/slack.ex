@@ -1,27 +1,21 @@
-defmodule FadBot.SlackRtm do
-  use Slack
-
+defmodule FadBot.Slack do
   require Logger
 
-  def handle_connect(slack, state) do
-    Logger.info("Connected as #{slack.me.name}")
-    {:ok, state}
+  alias FadBot.Slack.Client
+
+  @spec post_message(channel :: String.t(), message :: String.t()) :: :ok | :error
+  def post_message(channel, message) do
+    case Client.post_message(channel, message) do
+      {:ok, _} -> :ok
+      _ -> :error
+    end
   end
 
-  def handle_event(message = %{type: "message"}, slack, state) do
-    send_message("I got a message!", message.channel, slack)
-    {:ok, state}
+  @spec public_channels() :: {:ok, list()} | :error
+  def public_channels() do
+    case Client.public_channels() do
+      {:ok, %{"channels" => channels}} -> {:ok, channels}
+      _ -> :error
+    end
   end
-
-  def handle_event(_, _, state), do: {:ok, state}
-
-  def handle_info({:message, text, channel}, slack, state) do
-    Logger.info("Sending your message, captain!")
-
-    send_message(text, channel, slack)
-
-    {:ok, state}
-  end
-
-  def handle_info(_, _, state), do: {:ok, state}
 end

@@ -1,13 +1,9 @@
 defmodule FadBotWeb.SlackController do
   use FadBotWeb, :controller
 
-  require Logger
-
-  def callback(conn, params) do
-    Logger.info("Receiving callback #{inspect(params)}")
-
+  def callback(conn, _params) do
     conn
     |> put_status(:ok)
-    |> json("")
+    |> json("Ok, sending your message")
   end
 end

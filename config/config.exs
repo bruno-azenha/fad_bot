@@ -23,8 +23,10 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-# Config Slack RTM
-config :slack, api_token: System.get_env("SLACK_API_TOKEN")
+# Config Slack Host
+config :fad_bot, :slack,
+  host: FadBot.Slack.Client.ProdHost,
+  api_token: "xoxb-1014088253766-1836173074228-Ib0Jz3E5T72kUh95DbFq5Eym"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

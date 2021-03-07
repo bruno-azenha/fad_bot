@@ -8,3 +8,8 @@ config :fad_bot, FadBotWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Config Slack Host
+config :fad_bot, :slack,
+  host: FadBot.Slack.TestHost,
+  api_token: "<FAKE_TOKEN>"

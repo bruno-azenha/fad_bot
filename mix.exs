@@ -33,7 +33,7 @@ defmodule FadBot.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:slack, "~> 0.23.5"},
+      {:finch, "~> 0.6"},
       {:phoenix, "~> 1.5.7"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -42,7 +42,10 @@ defmodule FadBot.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:bypass, "~> 2.1", only: :test},
+      {:mox, "~> 1.0", only: :test},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
     ]
   end
 
