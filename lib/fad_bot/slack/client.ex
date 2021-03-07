@@ -28,13 +28,6 @@ defmodule FadBot.Slack.Client do
     end
   end
 
-  def public_channels() do
-    case request(:get, "/conversations.list", nil) do
-      {:ok, slack_response} -> {:ok, slack_response}
-      _ -> :error
-    end
-  end
-
   ## HTTP helpers
 
   defp request(method, path, body) do

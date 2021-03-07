@@ -3,19 +3,13 @@ defmodule FadBot.Slack do
 
   alias FadBot.Slack.Client
 
-  @spec post_message(channel :: String.t(), message :: String.t()) :: :ok | :error
-  def post_message(channel, message) do
-    case Client.post_message(channel, message) do
+  @spec post_message(message :: String.t()) :: :ok | :error
+  def post_message(message) do
+    case Client.post_message(target_channel(), message) do
       {:ok, _} -> :ok
       _ -> :error
     end
   end
 
-  @spec public_channels() :: {:ok, list()} | :error
-  def public_channels() do
-    case Client.public_channels() do
-      {:ok, %{"channels" => channels}} -> {:ok, channels}
-      _ -> :error
-    end
-  end
+  defp target_channel(), do: Application.get_env(:fad_bot, :slack)[:target_channel_id]
 end
